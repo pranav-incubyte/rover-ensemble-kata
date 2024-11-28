@@ -4,16 +4,15 @@ https://github.com/khru/code-smells-refactoring-training-ts/tree/main/01-refacto
 
 The purpose of this mob programming kata is to refactor the existing code for rover using concepts from clean code book's chapter number 6 - "Objects & Data Structures".
 
-Before starting: -
+Before starting: - 
 - Create a separate branch for your attempt and inform everyone in the session to switch to that branch.
 - Select on a solid goal on what you need to accomplish in this session. No more than 2 small and achievable goals. (eg: to learn the concept of Objects and Data structures). Strictly stick to this goal.
-
 - Write down your names below to track the order for "Driver", and "Navigator" role.
 
-  - Peter
-  - Tony
-  - Steve
-  - ...
+- Peter
+- Tony
+- Steve
+- ...
 
 ## Note
 - It is not advisable to have more than 6-7 people for a session.
