@@ -17,48 +17,57 @@ public class Rover {
 
             if (command.equals("l") || command.equals("r")) {
                 // Rotate Rover
-                if (direction.equals("N")) {
-                    if (command.equals("r")) {
-                        direction = "E";
-                    } else {
-                        direction = "W";
-                    }
-                } else if (direction.equals("S")) {
-                    if (command.equals("r")) {
-                        direction = "W";
-                    } else {
-                        direction = "E";
-                    }
-                } else if (direction.equals("W")) {
-                    if (command.equals("r")) {
-                        direction = "N";
-                    } else {
-                        direction = "S";
-                    }
-                } else {
-                    if (command.equals("r")) {
-                        direction = "S";
-                    } else {
-                        direction = "N";
-                    }
-                }
+                rotate(command);
             } else {
                 // Displace Rover
-                int displacement1 = -1;
+                displace(command);
+            }
+        }
+    }
 
-                if (command.equals("f")) {
-                    displacement1 = 1;
-                }
-                int displacement = displacement1;
+    private void displace(String command) {
+        int displacement = -1;
 
-                if (direction.equals("N")) {
-                    y += displacement;
-                } else if (direction.equals("S")) {
-                    y -= displacement;
-                } else if (direction.equals("W")) {
-                    x -= displacement;
+        if (command.equals("f")) {
+            displacement = 1;
+        }
+
+        switch (direction) {
+            case "N" -> y += displacement;
+            case "S" -> y -= displacement;
+            case "W" -> x -= displacement;
+            default -> x += displacement;
+        }
+    }
+
+    private void rotate(String command) {
+        switch (direction) {
+            case "N" -> {
+                if (command.equals("r")) {
+                    direction = "E";
                 } else {
-                    x += displacement;
+                    direction = "W";
+                }
+            }
+            case "S" -> {
+                if (command.equals("r")) {
+                    direction = "W";
+                } else {
+                    direction = "E";
+                }
+            }
+            case "W" -> {
+                if (command.equals("r")) {
+                    direction = "N";
+                } else {
+                    direction = "S";
+                }
+            }
+            default -> {
+                if (command.equals("r")) {
+                    direction = "S";
+                } else {
+                    direction = "N";
                 }
             }
         }
