@@ -11,11 +11,19 @@ public class Rover {
         this.direction = direction;
     }
 
+    private static boolean moveForward(String command) {
+        return command.equals("f");
+    }
+
+    private static boolean shouldRotate(String command) {
+        return command.equals("l") || command.equals("r");
+    }
+
     public void receive(String commandsSequence) {
         for (int i = 0; i < commandsSequence.length(); ++i) {
             String command = commandsSequence.substring(i, i + 1);
 
-            if (command.equals("l") || command.equals("r")) {
+            if (shouldRotate(command)) {
                 // Rotate Rover
                 rotate(command);
             } else {
@@ -28,7 +36,7 @@ public class Rover {
     private void displace(String command) {
         int displacement = -1;
 
-        if (command.equals("f")) {
+        if (moveForward(command)) {
             displacement = 1;
         }
 
@@ -42,34 +50,10 @@ public class Rover {
 
     private void rotate(String command) {
         switch (direction) {
-            case "N" -> {
-                if (command.equals("r")) {
-                    direction = "E";
-                } else {
-                    direction = "W";
-                }
-            }
-            case "S" -> {
-                if (command.equals("r")) {
-                    direction = "W";
-                } else {
-                    direction = "E";
-                }
-            }
-            case "W" -> {
-                if (command.equals("r")) {
-                    direction = "N";
-                } else {
-                    direction = "S";
-                }
-            }
-            default -> {
-                if (command.equals("r")) {
-                    direction = "S";
-                } else {
-                    direction = "N";
-                }
-            }
+            case "N" -> direction = command.equals("r") ? "E" : "W";
+            case "S" -> direction = command.equals("r") ? "W" : "E";
+            case "W" -> direction = command.equals("r") ? "N" : "S";
+            default -> direction = command.equals("r") ? "S" : "N";
         }
     }
 
